@@ -977,6 +977,8 @@ NSMutableDictionary *bindingsDict = nil;
 			[[self currentEditor] selectAll:self];
 		}
 	}
+	[NSTextInputContext currentInputContext].allowedInputSourceLocales = [NSArray arrayWithObject: NSAllRomanInputSourcesLocaleIdentifier];
+
 	return [super becomeFirstResponder];
 }
 
