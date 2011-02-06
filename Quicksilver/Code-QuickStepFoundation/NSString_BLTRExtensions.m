@@ -21,7 +21,7 @@ NSComparisonResult prefixCompare(NSString *aString, NSString *bString) {
 	int i;
 	NSString *characterString;
 	NSRange currentRange = NSMakeRange(0, [testString length]);
-	int index;
+	NSUInteger index;
 	for (i = 0; i<(int) [self length]; i++) {
 		characterString = [self substringWithRange:NSMakeRange(i, 1)];
 		index = [testString rangeOfString:characterString options:NSCaseInsensitiveSearch range:currentRange].location;
@@ -102,7 +102,7 @@ NSComparisonResult prefixCompare(NSString *aString, NSString *bString) {
 	int i;
 	NSString *characterString;
 	NSRange currentRange = NSMakeRange(0, [testString length]);
-	int index;
+	NSUInteger index;
 	for (i = 0; i<[self length]; i++) {
 		characterString = [self substringWithRange:NSMakeRange(i, 1)];
 		index = [testString rangeOfString:characterString options:NSCaseInsensitiveSearch range:currentRange].location;
@@ -306,7 +306,7 @@ NSComparisonResult prefixCompare(NSString *aString, NSString *bString) {
 
 - (NSString *)stringByResolvingWildcardsInPath {
 	NSMutableArray *components = [[[self stringByStandardizingPath] pathComponents] mutableCopy];
-	int index = [components indexOfObject:@"*"];
+	NSUInteger index = [components indexOfObject:@"*"];
     
 	if (index == NSNotFound) {
         [components release];

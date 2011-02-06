@@ -166,6 +166,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>${QS_BUNDLE_VERSION}</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<integer>1</integer>
 	<key>LSUIElement</key>

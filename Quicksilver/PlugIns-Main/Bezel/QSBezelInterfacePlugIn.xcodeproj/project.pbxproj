@@ -201,6 +201,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D4F33190E39EEB600668F94 /* QSPlugIn_Debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "Bezel Interface";
 			};
 			name = Debug;
@@ -209,6 +212,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D4F331A0E39EEB600668F94 /* QSPlugIn_Release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "Bezel Interface";
 			};
 			name = Release;
@@ -217,6 +223,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DA1CCC80E0BB53B00CA6002 /* Debug.xcconfig */;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Debug;
 		};
@@ -224,6 +231,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DA1CCCB0E0BB53B00CA6002 /* Release.xcconfig */;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Release;
 		};

@@ -3,7 +3,6 @@
 #import <Quartz/Quartz.h>
 #import <WebKit/WebKit.h>
 //#import "QSResourceManager.h"
-#import "NSScreen_BLTRExtensions.h"
 
 @interface QCView (Private)
 - (void)setClearsBackground:(BOOL)flag;
@@ -36,7 +35,8 @@
 	[creditsView setDrawsBackground:NO];
 	[creditsView setPolicyDelegate:self];
 
-	if ([[NSScreen mainScreen] usesOpenGLAcceleration]) {
+	//if ([[NSScreen mainScreen] usesOpenGLAcceleration]) {
+    if(CGDisplayUsesOpenGLAcceleration((CGDirectDisplayID)[[[NSScreen mainScreen] deviceDescription] valueForKey:@"NSScreenNumber"])){
 		NSRect r = [imageView frame];
 		r.origin = [aboutWindow convertBaseToScreen:r.origin];
 		NSWindow *window = [[[NSWindow class] alloc] initWithContentRect:r styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];

@@ -7,7 +7,7 @@
 #import <QSFoundation/QSFoundation.h>
 
 @implementation QSDockingWindow
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
 	NSWindow *result = [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
 	[self setOpaque:NO];
 	[self center];
@@ -97,7 +97,7 @@
 	NSEvent *reentry = [NSApp nextEventMatchingMask:NSMouseEnteredMask untilDate:[NSDate dateWithTimeIntervalSinceNow:0.333] inMode:NSDefaultRunLoopMode dequeue:NO];
 	if ([reentry windowNumber] != [self windowNumber])
 		reentry = nil;
-	if (!reentry && !StillDown() ) {
+	if (!reentry && !CGEventSourceButtonState(kCGEventSourceStateCombinedSessionState, kCGMouseButtonLeft) ) {
 		[self hideOrOrderOut:self];
 	}
 }

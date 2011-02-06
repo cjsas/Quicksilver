@@ -190,7 +190,7 @@ QSExecutor *QSExec = nil;
         activation = [action defaultEnabled];
 	[action setMenuEnabled:activation];    
 
-	int index = [actionRanking indexOfObject:ident];
+	NSUInteger index = [actionRanking indexOfObject:ident];
 
 	if (index == NSNotFound) {
 		float prec = [action precedence];
@@ -437,7 +437,7 @@ QSExecutor *QSExec = nil;
 }
 
 - (void)orderActions:(NSArray *)actions aboveActions:(NSArray *)lowerActions {
-	int index = [[lowerActions valueForKeyPath:@"@min.rank"] intValue];
+	NSUInteger index = [[lowerActions valueForKeyPath:@"@min.rank"] intValue];
 	if (VERBOSE) NSLog(@"Promote to %d", index);
 	NSString *targetIdentifier = [actionRanking objectAtIndex:index];
 	NSArray *identifiers = [actions valueForKey:@"identifier"];
@@ -447,7 +447,7 @@ QSExecutor *QSExec = nil;
 	[self updateRanks];
 }
 - (void)orderActions:(NSArray *)actions belowActions:(NSArray *)higherActions {
-	int index = [[higherActions valueForKeyPath:@"@max.rank"] intValue];
+	NSUInteger index = [[higherActions valueForKeyPath:@"@max.rank"] intValue];
 	//NSLog(@"demote to %d", index);
 	NSString *targetIdentifier = [actionRanking objectAtIndex:index];
 	NSArray *identifiers = [actions valueForKey:@"identifier"];

@@ -298,7 +298,7 @@ NSDictionary *enabledPresetDictionary;*/
 - (NSIndexPath *)catalogIndexPath {
 	NSArray *anc = [self ancestors];
 	int i;
-	int index;
+	NSUInteger index;
 	NSIndexPath *p = nil;
 	for (i = 0; i < ([anc count]-1); i++) {
 		index = [[[anc objectAtIndex:i] children] indexOfObject:[anc objectAtIndex:i+1]];
@@ -314,7 +314,7 @@ NSDictionary *enabledPresetDictionary;*/
 - (NSIndexPath *)catalogSetIndexPath {
 	NSArray *anc = [self ancestors];
 	int i;
-	int index;
+	NSUInteger index;
 	NSIndexPath *p = nil;
 	for (i = 1; i<([anc count] -1); i++) {
 		index = [[[anc objectAtIndex:i] children] indexOfObject:[anc objectAtIndex:i+1]];

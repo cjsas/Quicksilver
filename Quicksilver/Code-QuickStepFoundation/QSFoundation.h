@@ -31,7 +31,6 @@
 #import "NSObject+BLTRExtensions.h"
 #import "NSObject+ReaperExtensions.h"
 #import "NSPasteboard_BLTRExtensions.h"
-#import "NSScreen_BLTRExtensions.h"
 #import "NSSortDescriptor+BLTRExtensions.h"
 #import "NSString+CarbonUtilities.h"
 #import "NSString+NDUtilities.h"

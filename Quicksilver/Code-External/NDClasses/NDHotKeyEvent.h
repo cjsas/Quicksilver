@@ -136,6 +136,15 @@ extern const OSType			NDHotKeyDefaultSignature;
 + (NDHotKeyEvent *)findHotKeyForKeyCode:(unsigned short)keyCode modifierFlags:(unsigned int)modifierFlags;
 
 /*!
+ @method findHotKeyForId:
+ @abstract Find an <tt>NDHotKeyEvent</tt>
+ @discussion Finds the <tt>NDHotKeyEvent</tt> for the with the given ID, you can find an already created <tt>NDHotKeyEvent</tt> but there is currently now way to create a new <tt>NDHotKeyEvent</tt> from a HotKey you create with Apple API's.
+ @param ID The hot key id as returned by <tt>hotKeyId</tt>
+ @result The <tt>NDHotKeyEvent</tt> obejct or nil if none found.
+ */
++ (NDHotKeyEvent *)findHotKeyForId:(UInt32)ID;
+
+/*!
 	@method hotKeyWithEvent:
 	@abstract Get a <tt>NDHotKeyEvent</tt> object.
 	@discussion Returns a new hot key for the supplied event, if there is already a hot key for the supplied key code and modifer flags then nil is returned.
@@ -415,6 +424,13 @@ extern const OSType			NDHotKeyDefaultSignature;
 	@result The modifer key flags.
  */
 - (unsigned int)modifierFlags;
+
+/*!
+ @method hotKeyId
+ @abstract Get the hot key id.
+ @discussion The id is how Apples 'Carbon Event Manager' keeps track of hot keys, if you want to use apples Hot Key function directly with <tt>NDHotKeyEvent</tt> then you can use the value returned from this method.
+ */
+- (UInt32)hotKeyId;
 
 /*!
 	@method stringValue

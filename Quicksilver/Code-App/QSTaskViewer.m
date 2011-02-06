@@ -105,7 +105,7 @@ NSNib *taskEntryNib = nil;
 	int i;
 	for (i = 0; i<[[self tasks] count]; i++) {
 		QSTask *task = [[self tasks] objectAtIndex:i];
-		int index = [oldTasks indexOfObject:task];
+		NSUInteger index = [oldTasks indexOfObject:task];
 		NSView *view = nil;
 		BOOL exists = index != NSNotFound;
 		if (exists)
@@ -155,7 +155,7 @@ NSNib *taskEntryNib = nil;
 	return tasks;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex { return NO; }
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex { return NO; }
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];

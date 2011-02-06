@@ -191,7 +191,7 @@
 	//	[[triggerTable tableColumnWithIdentifier: @"command"] setDataCell:imageAndTextCell];
 
 	NSColor *color = [triggerSetsTable backgroundColor];
-	float hue, saturation, brightness, alpha;
+	CGFloat hue, saturation, brightness, alpha;
 	[color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
 	// NSLog(@"hu %f %f %f %f", hue, saturation, brightness, alpha);
 
@@ -444,7 +444,7 @@
 	[triggerTable reloadData];
 
 	if ([[trigger type] isEqualToString:@"QSGroupTrigger"]) {
-		int row = [triggerTable selectedRow];
+		NSInteger row = [triggerTable selectedRow];
 		//NSLog(@"row %d %@", row, [[triggerArrayController selectedObjects] lastObject]);
 		[triggerTable editColumn:[triggerTable columnWithIdentifier:@"command"]
 							 row:row withEvent:[NSApp currentEvent] select:YES];
@@ -465,7 +465,7 @@
 	if (anObject == triggerTable) {
 		if ([triggerTable clickedColumn] == [triggerTable columnWithIdentifier:@"trigger"] || [triggerTable editedColumn] == [triggerTable columnWithIdentifier:@"trigger"]) {
 			NSArray *triggers = [triggerArrayController arrangedObjects];
-			int index = [triggerTable clickedRow];
+			NSInteger index = [triggerTable clickedRow];
 			if (index<0) return nil;
 			id manager = [(QSTrigger *)[triggers objectAtIndex:index] manager];
 			//NSLog(@"othereditor %@ %@", manager, thisTrigger);
@@ -598,7 +598,7 @@
 	}
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item {return nil;}
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {return nil;}
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {return NO;}
 - (int) outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {return 0;}
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {return nil;}
@@ -705,7 +705,7 @@
     if ([[aTableColumn identifier] isEqualToString: @"type"]) {
         //NSLog(@"anobject %@", anObject);
 
-        int typeIndex = [anObject intValue];
+        NSInteger typeIndex = [anObject intValue];
         if (typeIndex == -1) return;
         NSString *type = [[typeMenu itemAtIndex:typeIndex] representedObject];
         [thisTrigger setType:type];
@@ -755,7 +755,7 @@
 	return YES;
 }
 
-- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index {
+- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
 	id realItem = item;
 	item = [item respondsToSelector:@selector(representedObject)] ? [item representedObject] : [item observedObject];
     int dragOperation = (([[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask) ? NSDragOperationCopy : NSDragOperationMove);
@@ -782,11 +782,11 @@
     return dragOperation;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index {
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
 	//id treeItem = item;
 	//NSIndexPath *indexPath = [item indexPath];
 	item = [item respondsToSelector:@selector(representedObject)] ? [item representedObject] : [item observedObject];
-    NSLog(@"drop on %@ - %@ at index %d", item, [item identifier], index);
+    NSLog(@"drop on %@ - %@ at index %ld", item, [item identifier], index);
 
     NSPasteboard *pb = [info draggingPasteboard];
     NSData *data = [pb dataForType:QSTriggerDragType];

@@ -4,8 +4,8 @@
 
 
 @interface NSObject (QSTableViewDelegate)
-- (BOOL)tableView:(NSTableView *)aTableView shouldDrawRow:(int)rowIndex inClipRect:(NSRect)clipRect;
-- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(int)rowIndex;
+- (BOOL)tableView:(NSTableView *)aTableView shouldDrawRow:(NSInteger)rowIndex inClipRect:(NSRect)clipRect;
+- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(NSInteger)rowIndex;
 - (NSMenu *)tableView:(NSTableView*)tableView menuForTableColumn:(NSTableColumn *)column row:(int)row;
 - (void)tableView:(NSTableView *)tv dropEndedWithOperation:(NSDragOperation)operation;
 - (void)drawSeparatorForRow:(int)rowIndex clipRect:(NSRect)clipRect;

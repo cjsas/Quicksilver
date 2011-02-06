@@ -26,7 +26,7 @@
 		[mnemonics setObject:(abbrevMnemonics = [NSMutableDictionary dictionaryWithCapacity:1]) forKey:@"abbreviation"];
 
 	if (DEBUG_STARTUP)
-		NSLog(@"Loaded %d implied and %d defined mnemonics", [objectMnemonics count], [abbrevMnemonics count]);
+		NSLog(@"Loaded %u implied and%u defined mnemonics", [objectMnemonics count], [abbrevMnemonics count]);
 
 	return self;
 }
@@ -67,7 +67,7 @@
 		[abbrevMnemonics setObject:objectEntry forKey:mnem];
 	}
 	//NSLog(@"recent %@ %@", [recentMnemonics objectForKey:mnem] , key);
-	int index = [objectEntry indexOfObject:above];
+	NSUInteger index = [objectEntry indexOfObject:above];
 
 //	if (VERBOSE) NSLog(@"%@", [objectEntry description]);
 

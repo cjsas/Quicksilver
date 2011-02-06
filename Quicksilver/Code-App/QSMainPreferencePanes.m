@@ -97,7 +97,7 @@
 }
 
 - (void)selectItemInPopUp:(NSPopUpButton *)popUp representedObject:(id)object {
-	int index = [popUp indexOfItemWithRepresentedObject:object];
+	NSUInteger index = [popUp indexOfItemWithRepresentedObject:object];
 	if (index == -1 && [popUp numberOfItems]) index = 0;
 	[popUp selectItemAtIndex:index];
 }

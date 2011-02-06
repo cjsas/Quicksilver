@@ -523,11 +523,11 @@ NSMutableDictionary *kindDescriptions = nil;
 	}
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(int)rowIndex {
+- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(NSInteger)rowIndex {
 	return NO;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldDrawRow:(int)rowIndex inClipRect:(NSRect)clipRect {
+- (BOOL)tableView:(NSTableView *)aTableView shouldDrawRow:(NSInteger)rowIndex inClipRect:(NSRect)clipRect {
 	clipRect = [aTableView rectOfRow:rowIndex];
 	// clipRect.origin.y += (int) (NSHeight(clipRect)/2);
 	// clipRect.size.height = 1.0;
@@ -541,7 +541,7 @@ NSMutableDictionary *kindDescriptions = nil;
 	return NO;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (tableView == resultTable && [[self currentResults] count] >row) {
 		QSObject *thisObject = [[self currentResults] objectAtIndex:row];
 
@@ -563,7 +563,7 @@ NSMutableDictionary *kindDescriptions = nil;
 	return nil;
 }
 
-- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
 	if ([[aTableColumn identifier] isEqualToString:COLUMNID_NAME]) {
 		NSArray *array = [self currentResults];
 		if (aTableView == resultChildTable) array = [selectedItem children];
@@ -585,7 +585,7 @@ NSMutableDictionary *kindDescriptions = nil;
 	}
 	return;
 }
-- (NSMenu *)tableView:(NSTableView*)tableView menuForTableColumn:(NSTableColumn *)column row:(int)row {
+- (NSMenu *)tableView:(NSTableView*)tableView menuForTableColumn:(NSTableColumn *)column row:(NSInteger)row {
 	[tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:(row ? row : 0)] byExtendingSelection:NO];
 
 	NSArray *array = [self currentResults];

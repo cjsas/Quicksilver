@@ -29,17 +29,17 @@
 
 	void (*effectFt) (QSWindowAnimation *);
 
-	CGPointWarp *(*warpFt) (QSWindowAnimation *, float, int *, int *);
+	CGPointWarp *(*warpFt) (QSWindowAnimation *, CGFloat, int *, int *);
 
-	CGAffineTransform (*transformFt) (QSWindowAnimation *, float);
+	CGAffineTransform (*transformFt) (QSWindowAnimation *, CGFloat);
 	struct CGAffineTransform _transformA;
 	struct CGAffineTransform _transformB;
 
-	float (*alphaFt) (QSWindowAnimation *, float);
+	float (*alphaFt) (QSWindowAnimation *, CGFloat);
 	float _alphaA;
 	float _alphaB;
 
-	float (*brightFt) (QSWindowAnimation *, float);
+	float (*brightFt) (QSWindowAnimation *, CGFloat);
 	float _brightA;
 	float _brightB;
 

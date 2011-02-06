@@ -197,6 +197,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D4F333F0E39EF3700668F94 /* QSPlugIn_Debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "Primer Interface";
 			};
 			name = Debug;
@@ -205,6 +208,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D4F33400E39EF3700668F94 /* QSPlugIn_Release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "Primer Interface";
 			};
 			name = Release;
@@ -213,6 +219,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DF0626C0E0BB8D50000EB16 /* Debug.xcconfig */;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Debug;
 		};
@@ -220,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DF062700E0BB8D50000EB16 /* Release.xcconfig */;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 			};
 			name = Release;
 		};

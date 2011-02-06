@@ -37,7 +37,7 @@
 - (void)_drawRect:(NSRect)rect withGradientFrom:(NSColor*)colorStart to:(NSColor*)colorEnd start:(NSRectEdge)edge {
 	NSRect remainingRect;
 	int i;
-	int index = (edge == NSMinXEdge || edge == NSMaxXEdge) ? rect.size.width : rect.size.height;
+	NSUInteger index = (edge == NSMinXEdge || edge == NSMaxXEdge) ? rect.size.width : rect.size.height;
 	remainingRect = rect;
 	NSColor *colors[index];
 	NSRect rects[index];

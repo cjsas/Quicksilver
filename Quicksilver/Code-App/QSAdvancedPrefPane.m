@@ -45,7 +45,7 @@
 	return [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"DefaultsMap" ofType:@"plist"]];
 }
 
-- (float) tableView:(NSTableView *)tableView heightOfRow:(int)row {
+- (CGFloat) tableView:(NSTableView *)tableView heightOfRow:(int)row {
 	NSTableColumn *column = [tableView tableColumnWithIdentifier:@"title"];
 	NSCell *cell = [column dataCell];
 	[cell setStringValue:[[[prefSetsController arrangedObjects] objectAtIndex:row] objectForKey:@"title"]];
@@ -57,7 +57,7 @@
    return [[aCell objectValue] description];
 }
 
-- (NSCell *)tableView:(NSTableView *)aTableView dataCellForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+- (NSCell *)tableView:(NSTableView *)aTableView dataCellForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
     
     id thisInfo = nil;
     // !!! Andre Berg 20091015: there seems to be a bug where the first load of the Extras table view has an index out of bound error 
@@ -113,14 +113,14 @@
     return cell;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
 	if ([[aTableColumn identifier] isEqualToString:@"value"]) {
 		id defaultKey = [[[prefSetsController arrangedObjects] objectAtIndex:rowIndex] objectForKey:@"default"];
 		return defaultKey ? [[NSUserDefaults standardUserDefaults] objectForKey:defaultKey] : nil;
 	}
 	return nil;
 }
-- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex {
 	if ([[aTableColumn identifier] isEqualToString:@"value"]) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:anObject forKey:[[[prefSetsController arrangedObjects] objectAtIndex:rowIndex] objectForKey:@"default"]];
@@ -133,7 +133,7 @@
 }
 
 #if 0
-- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if ([[tableColumn identifier] isEqualToString:@"value"]) {
 	//	id thisInfo = [[prefSetsController arrangedObjects] objectAtIndex:row];
 		//NSString *type = [thisInfo objectForKey:@"type"];

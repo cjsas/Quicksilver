@@ -301,7 +301,7 @@ static id _sharedInstance;
 		return 0;
 }
 
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int) rowIndex {
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger) rowIndex {
 	if ([[aTableColumn identifier] isEqualToString:kItemEnabled]) {
 		return [NSNumber numberWithBool:![[QSLibrarian sharedInstance] itemIsOmitted:[[contentsController arrangedObjects] objectAtIndex:rowIndex]]];
 	} else if ([[aTableColumn identifier] isEqualToString: kItemName]) {
@@ -310,10 +310,10 @@ static id _sharedInstance;
 	} else
 		return nil;
 }
-- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex { return YES; }
-- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(int)rowIndex { return NO; }
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex { return YES; }
+- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(NSInteger)rowIndex { return NO; }
 
-- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(int) rowIndex {
+- (void)tableView:(NSTableView *)aTableView setObjectValue:anObject forTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger) rowIndex {
 	if ([[aTableColumn identifier] isEqualToString:kItemEnabled])
 		[[QSLibrarian sharedInstance] setItem:[[contentsController arrangedObjects] objectAtIndex:rowIndex] isOmitted:![anObject boolValue]];
 }
@@ -396,7 +396,7 @@ static id _sharedInstance;
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item { return NO; }
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item { return nil; }
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item { return nil; }
 
 - (QSCatalogEntry *)catalog { return [[QSLibrarian sharedInstance] catalog]; }
 
@@ -422,7 +422,7 @@ static id _sharedInstance;
 	}
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(int)index {
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
 	item = [item respondsToSelector:@selector(representedObject)] ?[item representedObject] :[item observedObject];
 	if (!item)
 		item = [[QSLibrarian sharedInstance] entryForID:@"QSCatalogCustom"];
@@ -500,7 +500,7 @@ static id _sharedInstance;
 	return YES;
 }
 
-- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index {
+- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
 	item = [item respondsToSelector:@selector(representedObject)] ? [item representedObject] : [item observedObject];
 	if ([item isSeparator])
 		return NO;

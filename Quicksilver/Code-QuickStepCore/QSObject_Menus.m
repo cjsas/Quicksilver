@@ -149,7 +149,7 @@
 }
 
 - (BOOL)addChildrenInArray:(NSArray *)children count:(int)count toMenu:(NSMenu *)menu indent:(int)indent {
-	int index;
+	NSUInteger index;
 	count = MIN(count, [children count]);
 	for (index = 0; index<count; index++) {
 		QSObject *child = [[self children] objectAtIndex:index];

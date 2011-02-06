@@ -34,8 +34,8 @@
 	NSWindow *_window;
 	NSRect _endFrame;
 	NSRect _startFrame;
-	float _startAlpha;
-	float _endAlpha;
+	CGFloat _startAlpha;
+	CGFloat _endAlpha;
 	BOOL _displayFlag;
 }
 - (void)_resizeWindow:(id)window toFrame:(NSRect)frameRect alpha:(float)alpha display:(BOOL)flag;

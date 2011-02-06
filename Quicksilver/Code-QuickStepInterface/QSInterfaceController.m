@@ -384,7 +384,7 @@
 
 - (void)timerHide:(NSTimer *)timer {
 	if (preview) return;
-	bool stayOpen = StillDown();
+	bool stayOpen = CGEventSourceButtonState(kCGEventSourceStateCombinedSessionState, kCGMouseButtonLeft);
 	if (!stayOpen) {
 		 // NSLog(@"Window Closing");
 		if ([[NSApp keyWindow] level] <= [[self window] level])
@@ -624,7 +624,7 @@
 	int argumentCount = [(QSAction *)[aSelector objectValue] argumentCount];
     
 	if (sender == iSelector) {
-		int index = [array indexOfObject:[aSelector objectValue]];
+		NSUInteger index = [array indexOfObject:[aSelector objectValue]];
 		int count = [array count];
 		if (index != count-1)
 			array = [[array subarrayWithRange:NSMakeRange(index+1, count-index-1)] arrayByAddingObjectsFromArray:

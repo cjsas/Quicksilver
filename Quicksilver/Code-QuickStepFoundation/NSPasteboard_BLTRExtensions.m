@@ -12,20 +12,26 @@
 #import "QSKeyCodeTranslator.h"
 
 void QSForcePaste() {
+    /*
 	QSKeyCodeTranslator *linguist = [[QSKeyCodeTranslator alloc] init];
 	CGKeyCode keyCode = [linguist keyCodeForCharacter:@"v"];
 	[linguist release];
-
+     */
 	CGInhibitLocalEvents(YES);
 	CGEnableEventStateCombining(NO);
 
 	CGSetLocalEventsFilterDuringSupressionState(kCGEventFilterMaskPermitAllEvents, kCGEventSupressionStateSupressionInterval);
-
+    /*
 	CGPostKeyboardEvent((CGCharCode) 0, (CGKeyCode)55, true);
 	CGPostKeyboardEvent((CGCharCode) 'v', keyCode, true);
 	CGPostKeyboardEvent((CGCharCode) 'v', keyCode, false);
 	CGPostKeyboardEvent((CGCharCode) 0, (CGKeyCode)55, false);
-
+     */
+    CGEventCreateKeyboardEvent (NULL, (CGKeyCode)55, true);
+    CGEventCreateKeyboardEvent (NULL, (CGKeyCode)9, true);
+    CGEventCreateKeyboardEvent (NULL, (CGKeyCode)9, false);
+    CGEventCreateKeyboardEvent (NULL, (CGKeyCode)55, false);
+    NSLog(@"asdf");
 	CGEnableEventStateCombining(YES);
 	CGInhibitLocalEvents(NO);
 }

@@ -82,7 +82,7 @@
 - (void)setCurrentProgress:(NSAnimationProgress)progress {
 	NSArray *childWindows = [_window childWindows];
 //	NSLog(@"step %f", progress);
-	float _percent = progress;
+	CGFloat _percent = progress;
 	 [super setCurrentProgress:progress];
 //- (void)_doAnimationStep {
 	if (effectFt) {
@@ -107,7 +107,7 @@
 		free(mesh);
 	}
 	if (alphaFt) {
-		float alpha = (*alphaFt) (self, progress);
+		CGFloat alpha = (*alphaFt) (self, progress);
 
 	//	NSLog(@"step a %f", alpha);
 	//	alpha = progress;

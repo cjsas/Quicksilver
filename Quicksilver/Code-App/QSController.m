@@ -1,5 +1,4 @@
 #import "QSShading.h"
-#import "NSScreen_BLTRExtensions.h"
 #import "NSApplication+ServicesModification.h"
 #import "QSHotKeyEvent.h"
 #import "NDAlias+AliasFile.h"
@@ -213,7 +212,8 @@ QSController *QSCon;
 		case 4: priority = NSFarRightStatusItemPriority; break;
 		default: return;
 	}
-	statusItem = [[NSStatusBar systemStatusBar] _statusItemWithLength:29.0f withPriority:priority];
+	//statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:29.0f withPriority:priority];
+    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:29.0f];
 	[statusItem retain];
 	[statusItem setImage:[NSImage imageNamed:@"QuicksilverMenu"]];
 	[statusItem setAlternateImage:[NSImage imageNamed:@"QuicksilverMenuPressed"]];

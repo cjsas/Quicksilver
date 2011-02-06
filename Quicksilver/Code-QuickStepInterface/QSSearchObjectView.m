@@ -644,7 +644,7 @@ NSMutableDictionary *bindingsDict = nil;
 }
 
 - (void)selectObject:(QSBasicObject *)obj {
-	int index = 0;
+	NSUInteger index = 0;
 	//[self updateHistory];
 	if (obj) {
 		index = [resultArray indexOfObject:obj];

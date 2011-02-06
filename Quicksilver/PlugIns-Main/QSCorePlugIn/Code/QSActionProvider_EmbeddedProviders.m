@@ -58,7 +58,7 @@
 	NSURL *appURL = nil;
 	OSStatus err = LSGetApplicationForURL((CFURLRef) [NSURL URLWithString: @"http:"], kLSRolesAll, NULL, (CFURLRef *)&appURL);
 	if (err != noErr)
-		NSLog(@"error %ld", err);
+		NSLog(@"error %d", err);
     NSString *clientPath = [appURL path];
     [appURL release];
 	return clientPath;

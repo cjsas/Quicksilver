@@ -52,6 +52,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4ACE666D12FDEEDD00FE1889 /* NSStatusItem_BLTRExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ACE666C12FDEEDD00FE1889 /* NSStatusItem_BLTRExtensions.h */; };
 		4D6A663410AB2A2F00898CA4 /* QSTreeController.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D9C9680D134BDD00D91825 /* QSTreeController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D8A0B3F10AB2404006AF163 /* Configuration in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4D8A0B3510AB23F7006AF163 /* Configuration */; };
 		4DB4A0210E1007EA0010C540 /* QSKeyCodeTranslator.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FADD07B205950044D6EF /* QSKeyCodeTranslator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -71,7 +72,6 @@
 		4DD2CF360E7B345500BA1128 /* QSBasicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD2CF340E7B345500BA1128 /* QSBasicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DD2CF370E7B345500BA1128 /* QSBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD2CF350E7B345500BA1128 /* QSBasicObject.m */; };
 		4DD89EF90EBDD97B005A15AE /* CGSPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = E12444CB07297FF300043A01 /* CGSPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		4DD89F080EBDDA5E005A15AE /* NTLocalizedString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3CB920653BE030026BAF2 /* NTLocalizedString.m */; };
 		4DD89F0C0EBDDA7A005A15AE /* NTViewLocalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E3CB960653BE040026BAF2 /* NTViewLocalizer.m */; };
 		4DD89F230EBDDBA9005A15AE /* QSBuildOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD89F1A0EBDDBA9005A15AE /* QSBuildOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DD89F240EBDDBA9005A15AE /* QSDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DD89F1B0EBDDBA9005A15AE /* QSDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -479,8 +479,6 @@
 		E1E5FAC407B204BF0044D6EF /* NSObject+ReaperExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FA8E07B204BE0044D6EF /* NSObject+ReaperExtensions.m */; };
 		E1E5FAC507B204BF0044D6EF /* NSPasteboard_BLTRExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FA8F07B204BE0044D6EF /* NSPasteboard_BLTRExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1E5FAC607B204BF0044D6EF /* NSPasteboard_BLTRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FA9007B204BE0044D6EF /* NSPasteboard_BLTRExtensions.m */; };
-		E1E5FAC707B204BF0044D6EF /* NSScreen_BLTRExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FA9107B204BE0044D6EF /* NSScreen_BLTRExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1E5FAC807B204BF0044D6EF /* NSScreen_BLTRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FA9207B204BE0044D6EF /* NSScreen_BLTRExtensions.m */; };
 		E1E5FACB07B204BF0044D6EF /* NSString_BLTRExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FA9507B204BE0044D6EF /* NSString_BLTRExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1E5FACC07B204BF0044D6EF /* NSString_BLTRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5FA9607B204BE0044D6EF /* NSString_BLTRExtensions.m */; };
 		E1E5FACD07B204BF0044D6EF /* NSTableView_BLTRExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E5FA9707B204BE0044D6EF /* NSTableView_BLTRExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -869,6 +867,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4ACE666C12FDEEDD00FE1889 /* NSStatusItem_BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStatusItem_BLTRExtensions.h; sourceTree = "<group>"; };
 		4D4F32FC0E39EDE500668F94 /* QSEffects-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QSEffects-Info.plist"; sourceTree = "<group>"; };
 		4D4F32FD0E39EDFD00668F94 /* QSFoundation-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QSFoundation-Info.plist"; sourceTree = "<group>"; };
 		4D784C9410AB18D500898C87 /* Read Me.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Read Me.rtf"; sourceTree = "<group>"; };
@@ -992,7 +991,7 @@
 		7F4E4B370A3CD83D0070336A /* QSMainMenuPrefPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSMainMenuPrefPane.m; sourceTree = "<group>"; };
 		7F4E4B4C0A3CDA7A0070336A /* QSMainMenuPrefPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QSMainMenuPrefPane.xib; sourceTree = "<group>"; };
 		7F4E725409682F4200FBA4F7 /* QSSetupAssistant.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QSSetupAssistant.xib; sourceTree = "<group>"; };
-		7F5CFFC707FA76E700123A49 /* Quicksilver.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; path = Quicksilver.sdef; sourceTree = "<group>"; };
+		7F5CFFC707FA76E700123A49 /* Quicksilver.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Quicksilver.sdef; sourceTree = "<group>"; };
 		7F5D70CF091D9C76007A22C4 /* QSSplash.qtz */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = QSSplash.qtz; sourceTree = "<group>"; };
 		7F60F12607FA134600922645 /* QSMainPreferencePanes.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSMainPreferencePanes.h; sourceTree = "<group>"; };
 		7F60F12707FA134600922645 /* QSMainPreferencePanes.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSMainPreferencePanes.m; sourceTree = "<group>"; };
@@ -1288,7 +1287,7 @@
 		E180021307B2BBB900010DB0 /* QSTriggersPrefPane.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSTriggersPrefPane.m; sourceTree = "<group>"; };
 		E180021407B2BBB900010DB0 /* QSUpdateController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = QSUpdateController.h; sourceTree = "<group>"; };
 		E180021507B2BBB900010DB0 /* QSUpdateController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = QSUpdateController.m; sourceTree = "<group>"; };
-		E188856606A4884F00B75D22 /* System Events.scpt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.scpt; path = "System Events.scpt"; sourceTree = "<group>"; };
+		E188856606A4884F00B75D22 /* System Events.scpt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = file; path = "System Events.scpt"; sourceTree = "<group>"; };
 		E18986BF0657DDCE001286AA /* QSPlugIn.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = QSPlugIn.icns; sourceTree = "<group>"; };
 		E18F8D29072DBB1C00057774 /* PlugInVersionRequirements.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = PlugInVersionRequirements.plist; sourceTree = "<group>"; };
 		E1A2B21306F954F80084C47B /* wildcard.* */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "wildcard.*"; sourceTree = "<group>"; };
@@ -1305,8 +1304,6 @@
 		E1D1F5BD07197D6B00F48DE5 /* QuicksilverMenuLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuicksilverMenuLight.png; sourceTree = "<group>"; };
 		E1E3CB8F0653BE030026BAF2 /* NSButton-NTExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSButton-NTExtensions.h"; sourceTree = "<group>"; };
 		E1E3CB900653BE030026BAF2 /* NSButton-NTExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSButton-NTExtensions.m"; sourceTree = "<group>"; };
-		E1E3CB910653BE030026BAF2 /* NTLocalizedString.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NTLocalizedString.h; sourceTree = "<group>"; };
-		E1E3CB920653BE030026BAF2 /* NTLocalizedString.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NTLocalizedString.m; sourceTree = "<group>"; };
 		E1E3CB950653BE030026BAF2 /* NTViewLocalizer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NTViewLocalizer.h; sourceTree = "<group>"; };
 		E1E3CB960653BE040026BAF2 /* NTViewLocalizer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NTViewLocalizer.m; sourceTree = "<group>"; };
 		E1E5F9AF07B1FCFC0044D6EF /* QSFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QSFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1359,9 +1356,6 @@
 		E1E5FA8E07B204BE0044D6EF /* NSObject+ReaperExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ReaperExtensions.m"; sourceTree = "<group>"; };
 		E1E5FA8F07B204BE0044D6EF /* NSPasteboard_BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSPasteboard_BLTRExtensions.h; sourceTree = "<group>"; };
 		E1E5FA9007B204BE0044D6EF /* NSPasteboard_BLTRExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSPasteboard_BLTRExtensions.m; sourceTree = "<group>"; };
-		E1E5FA9107B204BE0044D6EF /* NSScreen_BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSScreen_BLTRExtensions.h; sourceTree = "<group>"; };
-		E1E5FA9207B204BE0044D6EF /* NSScreen_BLTRExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSScreen_BLTRExtensions.m; sourceTree = "<group>"; };
-		E1E5FA9307B204BE0044D6EF /* NSStatusItem_BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSStatusItem_BLTRExtensions.h; sourceTree = "<group>"; };
 		E1E5FA9507B204BE0044D6EF /* NSString_BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSString_BLTRExtensions.h; sourceTree = "<group>"; };
 		E1E5FA9607B204BE0044D6EF /* NSString_BLTRExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSString_BLTRExtensions.m; sourceTree = "<group>"; };
 		E1E5FA9707B204BE0044D6EF /* NSTableView_BLTRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTableView_BLTRExtensions.h; sourceTree = "<group>"; };
@@ -1977,8 +1971,6 @@
 				7F26503308DB09B20076E4E6 /* UKDirectoryEnumerator.m */,
 				E1E3CB8F0653BE030026BAF2 /* NSButton-NTExtensions.h */,
 				E1E3CB900653BE030026BAF2 /* NSButton-NTExtensions.m */,
-				E1E3CB910653BE030026BAF2 /* NTLocalizedString.h */,
-				E1E3CB920653BE030026BAF2 /* NTLocalizedString.m */,
 				E1E3CB950653BE030026BAF2 /* NTViewLocalizer.h */,
 				E1E3CB960653BE040026BAF2 /* NTViewLocalizer.m */,
 				E103EE2906471DDE00447FE0 /* CPS.h */,
@@ -2234,11 +2226,9 @@
 				E1E5FA8E07B204BE0044D6EF /* NSObject+ReaperExtensions.m */,
 				E1E5FA8F07B204BE0044D6EF /* NSPasteboard_BLTRExtensions.h */,
 				E1E5FA9007B204BE0044D6EF /* NSPasteboard_BLTRExtensions.m */,
-				E1E5FA9107B204BE0044D6EF /* NSScreen_BLTRExtensions.h */,
-				E1E5FA9207B204BE0044D6EF /* NSScreen_BLTRExtensions.m */,
+				4ACE666C12FDEEDD00FE1889 /* NSStatusItem_BLTRExtensions.h */,
 				7FDF342307F7D60A00594789 /* NSSortDescriptor+BLTRExtensions.h */,
 				7FDF342407F7D60A00594789 /* NSSortDescriptor+BLTRExtensions.m */,
-				E1E5FA9307B204BE0044D6EF /* NSStatusItem_BLTRExtensions.h */,
 				E1E5FA9507B204BE0044D6EF /* NSString_BLTRExtensions.h */,
 				E1E5FA9607B204BE0044D6EF /* NSString_BLTRExtensions.m */,
 				E1E5FA9707B204BE0044D6EF /* NSTableView_BLTRExtensions.h */,
@@ -2715,7 +2705,6 @@
 				7F05F1E20852441C00A8EC0C /* NSObject+BLTRExtensions.h in Headers */,
 				E1E5FAC307B204BF0044D6EF /* NSObject+ReaperExtensions.h in Headers */,
 				E1E5FAC507B204BF0044D6EF /* NSPasteboard_BLTRExtensions.h in Headers */,
-				E1E5FAC707B204BF0044D6EF /* NSScreen_BLTRExtensions.h in Headers */,
 				7FDF342507F7D60A00594789 /* NSSortDescriptor+BLTRExtensions.h in Headers */,
 				7F26503408DB09B20076E4E6 /* NSString+CarbonUtilities.h in Headers */,
 				E180041E07B35E3200010DB0 /* NSString+NDCarbonUtilities.h in Headers */,
@@ -2738,6 +2727,7 @@
 				7F943F6508033961007EDC31 /* QSUTI.h in Headers */,
 				7F26503608DB09B20076E4E6 /* UKDirectoryEnumerator.h in Headers */,
 				4D6A663410AB2A2F00898CA4 /* QSTreeController.h in Headers */,
+				4ACE666D12FDEEDD00FE1889 /* NSStatusItem_BLTRExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3421,7 +3411,6 @@
 				7F05F1E30852441C00A8EC0C /* NSObject+BLTRExtensions.m in Sources */,
 				E1E5FAC407B204BF0044D6EF /* NSObject+ReaperExtensions.m in Sources */,
 				E1E5FAC607B204BF0044D6EF /* NSPasteboard_BLTRExtensions.m in Sources */,
-				E1E5FAC807B204BF0044D6EF /* NSScreen_BLTRExtensions.m in Sources */,
 				7FDF342607F7D60A00594789 /* NSSortDescriptor+BLTRExtensions.m in Sources */,
 				7F26503508DB09B20076E4E6 /* NSString+CarbonUtilities.m in Sources */,
 				E180041F07B35E3300010DB0 /* NSString+NDCarbonUtilities.m in Sources */,
@@ -3435,7 +3424,6 @@
 				E1E5FAD407B204BF0044D6EF /* NSView_BLTRExtensions.m in Sources */,
 				E1E5FAD607B204BF0044D6EF /* NSWindow_BLTRExtensions.m in Sources */,
 				E1E5FAD807B204BF0044D6EF /* NSWorkspace_BLTRExtensions.m in Sources */,
-				4DD89F080EBDDA5E005A15AE /* NTLocalizedString.m in Sources */,
 				4DD89F0C0EBDDA7A005A15AE /* NTViewLocalizer.m in Sources */,
 				CDCC201110A4C14B009C4EED /* QSMDPredicate.m in Sources */,
 				4DC493CC0E8D1340000EEF1C /* QSHotKeyEvent.m in Sources */,
@@ -3903,9 +3891,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D7A90020E39E7C200A7E6BE /* QSPlugIn_Debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PlugIns-Main/QSCorePlugIn/QSCorePlugIn-Info.plist";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "Core Support";
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -3913,9 +3904,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D7A90010E39E7B400A7E6BE /* QSPlugIn_Release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PlugIns-Main/QSCorePlugIn/QSCorePlugIn-Info.plist";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "Core Support";
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
@@ -3923,11 +3917,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DC3DD0D0E0BB27B009902EF /* Debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix/Quicksilver.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PropertyLists/Quicksilver-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = Quicksilver;
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3936,11 +3934,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DC3DD130E0BB27B009902EF /* Release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix/Quicksilver.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PropertyLists/Quicksilver-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = Quicksilver;
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3965,6 +3967,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DC3DD0D0E0BB27B009902EF /* Debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -3973,6 +3977,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DC3DD130E0BB27B009902EF /* Release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				SDKROOT = macosx10.6;
 			};
 			name = Release;

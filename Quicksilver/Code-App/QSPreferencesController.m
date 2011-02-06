@@ -101,7 +101,7 @@ id QSPrefs;
 	[NSApp activateIgnoringOtherApps:YES];
 	[self showWindow:nil];
 	[self selectPaneWithIdentifier:identifier];
-//	int index = [[modules valueForKey:kItemID] indexOfObject:identifier];
+//	NSUInteger index = [[modules valueForKey:kItemID] indexOfObject:identifier];
 //	if (index == NSNotFound) {
 //		NSLog(@"%@ not found", identifier);
 //	} else {
@@ -172,7 +172,7 @@ id QSPrefs;
 	id mSidebarModules = [sidebarModules mutableCopy];
 	[self setModules:mSidebarModules];
 	[mSidebarModules release];
-	//	int index = [[modules valueForKey:kItemID] indexOfObject:currentPaneID];
+	//	NSUInteger index = [[modules valueForKey:kItemID] indexOfObject:currentPaneID];
 	//	if (index != NSNotFound) [internalPrefsTable selectRow:index byExtendingSelection:NO];
 	//
 	//	[internalPrefsTable reloadData];
@@ -267,23 +267,23 @@ id QSPrefs;
 //	return nil;
 //}
 
-- (float) tableView:(NSTableView *)tableView heightOfRow:(int)row {
+- (CGFloat) tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
 	return ([[modules objectAtIndex:row] objectForKey:@"separator"]) ? 8 : 16;
 	//return [[[modules objectAtIndex:row] objectForKey:@"type"] isEqualToString:@"Main"] ?32:16;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex {
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex {
 	return (aTableView == internalPrefsTable) ? ![self tableView:aTableView rowIsSeparator:rowIndex] : NO;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(int)rowIndex {
+- (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(NSInteger)rowIndex {
 	if (aTableView == internalPrefsTable)
 		return nil != [[modules objectAtIndex:rowIndex] objectForKey:@"separator"];
 	else
 		return NO;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView shouldShowCellExpansionForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (BOOL)tableView:(NSTableView *)tableView shouldShowCellExpansionForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	return NO;
 }
 
@@ -603,7 +603,7 @@ id QSPrefs;
 	}
 
 	NSDictionary *info = [modulesByID objectForKey:itemIdentifier];
-	//int index = [toolbarTabView indexOfTabViewItemWithIdentifier:itemIdentifier];
+	//NSUInteger index = [toolbarTabView indexOfTabViewItemWithIdentifier:itemIdentifier];
 	//if (index == NSNotFound) return nil;
 	//NSTabViewItem *tabViewItem = [toolbarTabView tabViewItemAtIndex:index];
 	//NSLog(@"tool %@", info);
@@ -645,12 +645,12 @@ id QSPrefs;
 
 //- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize;
 
-- (float) splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset {
+- (CGFloat) splitView:(NSSplitView *)sender constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)offset {
 	// return proposedMax-36;
 	return proposedMax - 384;
 }
 
-- (float) splitView:(NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset {
+- (CGFloat) splitView:(NSSplitView *)sender constrainMinCoordinate:(CGFloat)proposedMin ofSubviewAt:(NSInteger)offset {
 	return (offset) ? NSWidth([sender frame]) / 2 : 160;
 }
 

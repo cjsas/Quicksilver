@@ -92,19 +92,19 @@
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;short int&gt;<br>NSNumber&lt;char&gt;</tt></td>
-				<td align="center"><tt>typeSInt16<br>typeShortInteger<br>typeSMInt</tt></td>
+				<td align="center"><tt>typeSInt16<br><br>typeSMInt</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;int&gt;<br>NSNumber&lt;long int&gt;</tt></td>
-				<td align="center"><tt>typeSInt32<br>typeLongInteger<br>typeInteger</tt></td>
+				<td align="center"><tt>typeSInt32<br>typeSInt32<br>typeSInt32</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;float&gt;</tt></td>
-				<td align="center"><tt>typeIEEE32BitFloatingPoint<br>typeShortFloat<br>typeSMFloat</tt></td>
+				<td align="center"><tt>typeIEEE32BitFloatingPoint<br>typeIEEE32BitFloatingPoint<br>typeSMFloat</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;double&gt;</tt></td>
-				<td align="center"><tt>typeIEEE64BitFloatingPoint<br>typeFloat<br>typeLongFloat</tt></td>
+				<td align="center"><tt>typeIEEE64BitFloatingPoint<br>typeIEEE64BitFloatingPoint<br>typeIEEE64BitFloatingPoint</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;long double&gt;</tt></td>
@@ -146,27 +146,27 @@
 			</tr>
 			<tr>
 				<td align="center"><tt>short int</tt></td>
-				<td align="center"><tt>typeShortInteger</tt></td>
+				<td align="center"><tt></tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>int</tt></td>
-				<td align="center"><tt>typeInteger</tt></td>
+				<td align="center"><tt>typeSInt32</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>unsigned int<br></tt></td>
-				<td align="center"><tt>typeMagnitude</tt></td>
+				<td align="center"><tt>typeUInt32</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>long int</tt></td>
-				<td align="center"><tt>typeLongInteger</tt></td>
+				<td align="center"><tt>typeSInt32</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>float</tt></td>
-				<td align="center"><tt>typeShortFloat</tt></td>
+				<td align="center"><tt>typeIEEE32BitFloatingPoint</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>double</tt></td>
-				<td align="center"><tt>typeLongFloat</tt></td>
+				<td align="center"><tt>typeIEEE64BitFloatingPoint</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>BOOL</tt></td>
@@ -277,7 +277,7 @@
 /*!
 	@method descriptorWithShort:
 	@abstract Returns a <tt>NSAppleEventDescriptor</tt> containing a short integer descriptor.
-	@discussion Returns a <tt>NSAppleEventDescriptor</TT containing a descriptor of type <tt>typeShortInteger</tt>
+	@discussion Returns a <tt>NSAppleEventDescriptor</TT containing a descriptor of type <tt></tt>
 	@param value The short int.
 	@result A <tt>NSAppleEventDescriptor</tt> containing a short integer descriptor.
  */
@@ -286,7 +286,7 @@
 /*!
 	@method descriptorWithLong:
 	@abstract Returns a <tt>NSAppleEventDescriptor</tt> containing a long integer descriptor.
-	@discussion Returns a <tt>NSAppleEventDescriptor</TT containing a descriptor of type <tt>typeLongInteger</tt>
+	@discussion Returns a <tt>NSAppleEventDescriptor</TT containing a descriptor of type <tt>typeSInt32</tt>
 	@param value The long int.
 	@result A <tt>NSAppleEventDescriptor</tt> containing a lon integer descriptor.
  */
@@ -295,7 +295,7 @@
 /*!
 	@method descriptorWithInt:
 	@abstract Returns a <tt>NSAppleEventDescriptor</tt> containing a integer descriptor.
-	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeInteger</tt>
+	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeSInt32</tt>
 	@param value The int.
 	@result A <tt>NSAppleEventDescriptor</tt> containing a int descriptor.
  */
@@ -304,7 +304,7 @@
 /*!
 	@method descriptorWithFloat:
 	@abstract Returns a <tt>NSAppleEventDescriptor</tt> containing a float descriptor.
-	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeShortFloat</tt>
+	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeIEEE32BitFloatingPoint</tt>
 	@param value The float.
 	@result A <tt>NSAppleEventDescriptor</tt> containing a float descriptor.
  */
@@ -313,7 +313,7 @@
 /*!
 	@method descriptorWithDouble:
 	@abstract Returns a <tt>NSAppleEventDescriptor</tt> containing a double descriptor.
-	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeLongFloat</tt>
+	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeIEEE64BitFloatingPoint</tt>
 	@param value The double.
 	@result A <tt>NSAppleEventDescriptor</tt> containing a double descriptor.
  */
@@ -322,7 +322,7 @@
 /*!
 	@method descriptorWithUnsignedInt:
 	@abstract Returns a <tt>NSAppleEventDescriptor</tt> containing a unsigned integer descriptor.
-	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeMagnitude</tt>
+	@discussion Returns a <tt>NSAppleEventDescriptor</tt> containing a descriptor of type <tt>typeUInt32</tt>
 	@param value The unsigned int.
 	@result A <tt>NSAppleEventDescriptor</tt> containing a unsigned integer descriptor.
  */
@@ -401,27 +401,27 @@
 				<td align="center"><tt>NSNumber&lt;short int&gt;<br>
 									NSNumber&lt;char&gt;</tt></td>
 				<td align="center"><tt>typeSInt16<br>
-									typeShortInteger<br>
+									<br>
 									typeSMInt</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;int&gt;<br>
 									NSNumber&lt;long int&gt;</tt></td>
 				<td align="center"><tt>typeSInt32<br>
-									typeLongInteger<br>
-									typeInteger</tt></td>
+									typeSInt32<br>
+									typeSInt32</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;float&gt;</tt></td>
 				<td align="center"><tt>typeIEEE32BitFloatingPoint<br>
-									typeShortFloat<br>
+									typeIEEE32BitFloatingPoint<br>
 									typeSMFloat</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;double&gt;</tt></td>
 				<td align="center"><tt>typeIEEE64BitFloatingPoint<br>
-									typeFloat<br>
-									typeLongFloat</tt></td>
+									typeIEEE64BitFloatingPoint<br>
+									typeIEEE64BitFloatingPoint</tt></td>
 			</tr>
 			<tr>
 				<td align="center"><tt>NSNumber&lt;long double&gt;</tt></td>
@@ -679,19 +679,19 @@
 			</tr>
 			<tr>
 				<td align="center"><tt>typeBoolean<br>
-									typeShortInteger<br>
+									<br>
 									typeSMInt<br>
-									typeLongInteger<br>
-									typeInteger<br>
+									typeSInt32<br>
+									typeSInt32<br>
 									typeIEEE32BitFloatingPoint<br>
-									typeShortFloat<br>
+									typeIEEE32BitFloatingPoint<br>
 									typeSMFloat<br>
 									typeIEEE64BitFloatingPoint<br>
-									typeFloat<br>
-									typeLongFloat<br>
+									typeIEEE64BitFloatingPoint<br>
+									typeIEEE64BitFloatingPoint<br>
 									typeExtended<br>
 									typeComp<br>
-									typeMagnitude<br>
+									typeUInt32<br>
 									typeTrue<br>
 									typeFalse</tt></td>
 				<td align="center"><tt>NSNumber</tt></td>
