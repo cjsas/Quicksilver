@@ -10,22 +10,11 @@
 //	update task is now cancelled on "connection error".
 //	networkIsReachable returning YES. commented out.
 
-#import "QSUpdateController.h"
-#import "QSTask.h"
-#import "QSTaskController.h"
-#import "QSRegistry.h"
-#import "QSNotifyMediator.h"
-#import "QSApp.h"
-
-#import "QSPlugInManager.h"
-
-#import "QSPlugIn.h"
-
-#import "NSArray_BLTRExtensions.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 
-#import "QSURLDownloadWrapper.h"
-#import "QSPreferenceKeys.h"
+#import "Quicksilver.h"
+
+#import "QSUpdateController.h"
 
 @implementation QSUpdateController
 
@@ -98,6 +87,33 @@
 }
 #endif
 
+- (NSURL *)buildUpdateCheckURL {
+	NSString *checkURL = [[[NSProcessInfo processInfo] environment] objectForKey:@"QSCheckUpdateURL"];
+    if (!checkURL)
+        checkURL = kCheckUpdateURL;
+    NSString *thisVersionString = (NSString *)CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), kCFBundleVersionKey);
+    
+    NSString *versionType = nil;
+    switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"QSNewUpdateReleaseLevel"]) {
+        case 2:
+            versionType = @"dev";
+            break;
+        case 1:
+            versionType = @"pre";
+            break;
+        default:
+            versionType = @"rel";
+            break;
+    }
+    if (PRERELEASEVERSION)
+        versionType = @"pre";
+    
+    checkURL = [checkURL stringByAppendingFormat:@"?type=%@&current=%@", versionType, thisVersionString];
+    
+	if (VERBOSE) NSLog(@"Update Check URL: %@", checkURL);
+    return [NSURL URLWithString:checkURL];
+}
+
 - (IBAction)checkForUpdate:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -125,24 +141,14 @@
 	//[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 	BOOL forceUpdate = [sender isEqual:@"Force"];
 	if (forceUpdate) NSLog(@"Forcing Update");
-	int versionType = [defaults integerForKey:@"QSNewUpdateReleaseLevel"];
-
-	NSString *versionURL = nil;
-	if (versionType == 2)
-		versionURL = kCurrentDevVersionURL;
-	else if (versionType == 1 || PRERELEASEVERSION)
-		versionURL = kCurrentPreVersionURL;
-	else if (versionType == 0)
-		versionURL = kCurrentVersionURL;
-
-	if (VERBOSE) NSLog(@"Version URL, %@", versionURL);
+    
 	BOOL newVersionAvailable = NO;
-
-	versionURL = [NSString stringWithFormat:@"%@&current=%@", versionURL, thisVersionString];
-
+    
+	NSURL *versionURL = [self buildUpdateCheckURL];
+    
 	NSString *testVersionString = nil;
 	if (success) {
-		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:versionURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:versionURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
 
 		NSData *data = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
 		testVersionString = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
@@ -151,8 +157,8 @@
 
 	[defaults setObject:[NSDate date] forKey:kLastUpdateCheck];
 	if ([testVersionString length] && [testVersionString length] <10) {
-		if (VERBOSE) NSLog(@"Current Version:%d Installed Version:%d", [testVersionString hexIntValue] , [thisVersionString hexIntValue]);
-		newVersionAvailable = [testVersionString hexIntValue] >[thisVersionString hexIntValue];
+		if (VERBOSE) NSLog(@"Current Version:%d Installed Version:%d", [testVersionString hexIntValue], [thisVersionString hexIntValue]);
+		newVersionAvailable = [testVersionString hexIntValue] > [thisVersionString hexIntValue];
 		if (newVersionAvailable)
 			newVersion = [testVersionString retain];
 	} else {
@@ -164,8 +170,7 @@
 		return;
 	}
 
-	NSString *altURL = [[[NSProcessInfo processInfo] environment] objectForKey:@"QSUpdateSource"];
-	if (altURL || forceUpdate)
+	if (forceUpdate)
 		newVersionAvailable = YES;
 
 	if (newVersionAvailable) {
@@ -196,33 +201,28 @@
 - (void)installAppUpdate {
 	if (updateTask) return;
 
-	NSString *fileURL = @"http://download.blacktree.com/download.php?id=com.blacktree.Quicksilver&type=dmg&new=yes";
-	//header("Location: http://download.blacktree.com/download.php?versionlevel=dev&new=yes&id=com.blacktree.Quicksilver&type=dmg");
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString *fileURL = [[[NSProcessInfo processInfo] environment] objectForKey:@"QSDownloadUpdateURL"];
+	if (!fileURL)
+        fileURL = kDownloadUpdateURL;
 
-	//	BOOL devUpdate = PRERELEASEVERSION || [[NSUserDefaults standardUserDefaults] boolForKey:@"QSUpdateFindDevVersions"];
+    fileURL = [fileURL stringByAppendingFormat:@"?id=%@&type=dmg&new=yes", [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleIdentifierKey]];
 
-	int versionType = [defaults integerForKey:@"QSUpdateReleaseLevel"];
+    int versionType = [[NSUserDefaults standardUserDefaults] integerForKey:@"QSUpdateReleaseLevel"];
+    if (versionType == 2)
+        fileURL = [fileURL stringByAppendingString:@"&dev=1"];
+    else if (versionType == 1 || PRERELEASEVERSION)
+        fileURL = [fileURL stringByAppendingString:@"&pre=1"];
 
-	//NSString *versionURL = nil;
-	if (versionType == 2)
-		fileURL = [fileURL stringByAppendingString:@"&dev=1"];
-	else if (versionType == 1 || PRERELEASEVERSION)
-		fileURL = [fileURL stringByAppendingString:@"&pre=1"];
-
-	NSString *altURL = [[[NSProcessInfo processInfo] environment] objectForKey:@"QSUpdateSource"];
-	if (altURL)
-		fileURL = altURL;
 	if (VERBOSE) NSLog(@"Downloading update from %@", fileURL);
-    
+
 	NSURL *url = [NSURL URLWithString:fileURL];
 	NSURLRequest *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
 
 	// NSLog(@"app %@", theRequest);
 	// create the connection with the request
 	// and start loading the data
-	QSURLDownload *theDownload = [[QSURLDownload alloc] initWithRequest:theRequest delegate:self];
-	if (theDownload) {
+	appDownload = [[QSURLDownload alloc] initWithRequest:theRequest delegate:self];
+	if (appDownload) {
 		updateTask = [[QSTask taskWithIdentifier:@"QSAppUpdateInstalling"] retain];
 		[updateTask setName:@"Downloading Update"];
 		[updateTask setProgress:-1];
@@ -233,18 +233,7 @@
 		//			[[QSTaskController sharedInstance] updateTask:@"QSAppUpdateInstalling" status:@"Downloading Update" progress:-1];
 		[QSTaskController showViewer];
 		[updateTask startTask:nil];
-		[self setAppDownload:(NSURLDownload*)theDownload];
-        [theDownload start];
-        
-        [theDownload release];
-	}
-
-}
-- (NSURLDownload *)appDownload { return appDownload; }
-- (void)setAppDownload:(NSURLDownload *)anAppDownload {
-	if(anAppDownload != appDownload){
-		[appDownload release];
-		appDownload = [anAppDownload retain];
+        [appDownload start];
 	}
 }
 
@@ -261,15 +250,16 @@
 //	return info;
 //}
 - (void)download:(QSURLDownload *)download didFailWithError:(NSError *)error {
+    if (download != appDownload)
+        return;
 	NSLog(@"Download Failed");
 	//	[[QSTaskController sharedInstance] removeTask:@"QSAppUpdateInstalling"];
 	[updateTask stopTask:nil];
 	[updateTask release];
 	updateTask = nil;
 	NSRunInformationalAlertPanel(@"Download Failed", @"An error occured while updating: %@", @"OK", nil, nil, [error localizedDescription] );
-	[self setAppDownload:nil];
-    [download cancel];
-	[download release];
+    [appDownload cancel];
+	[appDownload release];
 }
 
 - (void)downloadDidFinish:(QSURLDownload *)download {
@@ -301,15 +291,15 @@
 
 - (void)cancelUpdate:(QSTask *)task {
 	shouldCancel = YES;
-	[[self appDownload] cancel];
-	[self setAppDownload:nil];
+	[appDownload cancel];
+    [appDownload release], appDownload = nil;
 	[updateTask stopTask:nil];
 	[updateTask release];
 	updateTask = nil;
 }
 
 - (void)finishAppInstall {
-	NSString *path = [(QSURLDownload *)[self appDownload] destination];
+	NSString *path = [appDownload destination];
 
 	//[self installAppFromCompressedFile:path];
 	[updateTask setStatus:@"Download Complete"];
@@ -317,8 +307,7 @@
 	//	[[QSTaskController sharedInstance] updateTask:@"QSAppUpdateInstalling" status:@"Download Complete" progress:-1];
 	[self installAppFromDiskImage:path];
 	[updateTask stopTask:nil];
-	[updateTask release];
-				updateTask = nil;
+	[updateTask release], updateTask = nil;
 
 }
 - (NSArray *)installAppFromCompressedFile:(NSString *)path {

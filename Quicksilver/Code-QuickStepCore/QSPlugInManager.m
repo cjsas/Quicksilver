@@ -133,7 +133,9 @@
 }
 
 - (NSString *)webInfoURLFromDate:(NSDate *)date forUpdateVersion:(NSString *)version {
-	NSString *fetchURLString = @"http://qs0.blacktree.com/quicksilver/plugins/plugininfo.php?";
+	NSString *fetchURLString = [[[NSProcessInfo processInfo] environment] objectForKey:@"QSPluginInfoURL"];
+    if (!fetchURLString)
+        fetchURLString = kPluginInfoURL;
 	NSMutableArray *query = [NSMutableArray array];
 	if (date) {
 		[query addObject:[NSString stringWithFormat:@"asOfDate=%@",
@@ -150,7 +152,7 @@
 		[query addObject:[NSString stringWithFormat:@"sids=%@", [secretIdentifiers componentsJoinedByString:@", "]]];
 	}
 
-	fetchURLString = [fetchURLString stringByAppendingString:[query componentsJoinedByString:@"&"]];
+	fetchURLString = [fetchURLString stringByAppendingFormat:@"?%@", [query componentsJoinedByString:@"&"]];
 	if (VERBOSE) NSLog(@"Get web info: %@", fetchURLString);
 	return fetchURLString;
 }
@@ -318,9 +320,9 @@
 
 	int result;
 	if (needsRelaunch)
-		result = NSRunCriticalAlertPanel(@"Delete plug-ins?", @"Would you like to delete the selected plug-ins? A relaunch will be required", @"Delete and Relaunch", @"Cancel", nil, window);
+		result = NSRunCriticalAlertPanel(@"Delete plug-ins?", @"Would you like to delete the selected plug-ins? A relaunch will be required", @"Delete and Relaunch", @"Cancel", nil);
 	else
-		result = NSRunCriticalAlertPanel(@"Delete plug-ins?", @"Would you like to delete the selected plug-ins?", @"Delete", @"Cancel", nil, window);
+		result = NSRunCriticalAlertPanel(@"Delete plug-ins?", @"Would you like to delete the selected plug-ins?", @"Delete", @"Cancel", nil);
 
 	if (result) {
 		BOOL success = 1;
@@ -392,7 +394,6 @@
 
 - (void)loadPlugInsAtLaunch {
 	NSDate *date = [NSDate date];
-    QSPlugIn * plugin = nil;
     
 	// load main bundle
 	[[QSPlugIn plugInWithBundle:[NSBundle mainBundle]]registerPlugIn];
@@ -441,8 +442,6 @@
 #define appSupportSubpath @"Application Support/Quicksilver/PlugIns"
 
 - (NSMutableArray *)allBundles {
-
-	NSString *currPath = nil;
 	NSMutableSet *bundleSearchPaths = [NSMutableSet set];
 	NSMutableArray *allBundles = [NSMutableArray array];
 	//[allBundles addObject:[[NSBundle mainBundle] bundlePath]];
@@ -679,7 +678,8 @@
 	[manager createDirectoriesForPath:destinationFolder];
 	NSString *destinationPath = [destinationFolder stringByAppendingPathComponent: [path lastPathComponent]];
 	if (![destinationPath isEqualToString:path]) {
-		if (![manager removeItemAtPath:destinationPath error:nil]);
+		if (![manager removeItemAtPath:destinationPath error:nil])
+             NSLog(@"failed to remove %@ for installation of %@", destinationPath, path);
 	}
 	if (![manager moveItemAtPath:path toPath:destinationPath error:nil]) NSLog(@"move failed, %@, %@", path, destinationPath);
 	[[NSWorkspace sharedWorkspace] noteFileSystemChanged:[path stringByDeletingLastPathComponent]];
@@ -782,8 +782,13 @@
 }
 
 - (NSString *)urlStringForPlugIn:(NSString *)ident version:(NSString *)version {
-	if (!version) version = [NSApp buildVersion];
-	return [NSString stringWithFormat:@"http://qs0.blacktree.com/quicksilver/plugins/download.php?qsversion=%d&id=%@", [version hexIntValue] , ident];
+    NSString *downloadURL = [[[NSProcessInfo processInfo] environment] objectForKey:@"QSPluginDownloadURL"];
+    if (!downloadURL)
+        downloadURL = kPluginDownloadURL;
+
+	if (!version)
+        version = [NSApp buildVersion];
+	return [NSString stringWithFormat:@"%@?qsversion=%d&id=%@", downloadURL, [version hexIntValue], ident];
 }
 
 - (BOOL)installPlugInsForIdentifiers:(NSArray *)bundleIDs version:(NSString *)version {
@@ -806,7 +811,9 @@
 }
 
 - (void)installPlugInWithInfo:(NSDictionary *)info {
-	[[self downloadsQueue] addObject:[QSURLDownload downloadWithURL:[NSURL URLWithString:[info objectForKey:@"url"]] delegate:self]];
+    QSURLDownload *download = [QSURLDownload downloadWithURL:[NSURL URLWithString:[info objectForKey:@"url"]] delegate:self];
+    [download setUserInfo:[info objectForKey:@"id"]];
+	[[self downloadsQueue] addObject:download];
 	[self updateDownloadProgressInfo];
 }
 
@@ -867,7 +874,7 @@
 
 - (void)updateDownloadProgressInfo {
 	//NSLog(@"count %d %d %f", [[self downloadsQueue] count], downloadsCount, [[[self downloadsQueue] objectAtIndex:0] progress]);
-    float progress = 0;
+    float progress = 1.0;
     for (QSURLDownload *download in [self downloadsQueue]) {
         progress *= [download progress];
     }

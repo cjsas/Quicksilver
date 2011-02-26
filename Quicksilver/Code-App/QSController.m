@@ -1,84 +1,18 @@
-#import "QSShading.h"
-#import "NSApplication+ServicesModification.h"
-#import "QSHotKeyEvent.h"
-#import "NDAlias+AliasFile.h"
-#import <Quartz/Quartz.h>
-#import "NDHotKeyEvent.h"
-#import "NDProcess.h"
-#import "QSProxyObject.h"
-#import "NSApplication_BLTRExtensions.h"
-#import "NSException_TraceExtensions.h"
-#import "NSException_TraceExtensions.h"
-#import "NSFileManager_BLTRExtensions.h"
-#import "NSStatusItem_BLTRExtensions.h"
-#import "QSAboutWindowController.h"
-#import "QSApp.h"
-#import "QSBackgroundView.h"
-#import "QSCatalogEntrySource.h"
-#import "QSCatalogPrefPane.h"
-#import "QSWindowAnimation.h"
-#import "QSWindowAnimation.h"
-#import "QSCommandBuilder.h"
-#import "QSController.h"
-#import "QSDefaultsObjectSource.h"
-#import "QSExecutor.h"
-#import "QSFileConflictPanel.h"
-#import "QSFileSystemObjectSource.h"
-#import "QSFSBrowserMediator.h"
-#import "QSFSBrowserMediator.h"
-#import "QSImageAndTextCell.h"
-#import "QSInterfaceController.h"
-#import "QSInterfaceMediator.h"
-#import "QSLibrarian.h"
-#import "QSMacros.h"
-#import "QSModifierKeyEvents.h"
-#import "QSMnemonics.h"
-#import "QSNotifications.h"
-#import "QSObject_AEConversion.h"
-#import "QSObject_FileHandling.h"
-#import "QSObject_StringHandling.h"
-#import "QSObject_URLHandling.h"
-#import "QSObjectView.h"
-#import "QSPlugIn.h"
-#import "QSPlugInManager.h"
-#import "QSPlugInsPrefPane.h"
-#import "QSPreferenceKeys.h"
-#import "QSPreferencesController.h"
-#import "QSProcessSource.h"
-#import "QSRegistry.h"
-#import "QSResourceManager.h"
-#import "QSSearchObjectView.h"
-#import "QSSetupAssistant.h"
-#import "QSTaskController.h"
-#import "QSTaskViewer.h"
-#import "QSTask.h"
-#import "QSTriggerCenter.h"
-#import "QSTriggersPrefPane.h"
-#import "QSUpdateController.h"
-#import "QSVoyeur.h"
-#import "QSWindow.h"
-#import <ApplicationServices/ApplicationServices.h>
-#import <Carbon/Carbon.h>
-#import <ExceptionHandling/NSExceptionHandler.h>
-#import <IOKit/IOCFBundle.h>
-#import <QSCore/QSObject.h>
-#import <QSCore/QSObject.h>
-#import <QSFoundation/QSFoundation.h>
-#import <QuartzCore/QuartzCore.h>
-#import <stdio.h>
-#include <unistd.h>
 
-#import "QSSyncManager.h"
+#import <ExceptionHandling/NSExceptionHandler.h>
+#import "Quicksilver.h"
+
+#import "QSController.h"
+
+#import "QSCatalogPrefPane.h"
+#import "QSPlugInsPrefPane.h"
+#import "QSAboutWindowController.h"
+#import "QSPreferencesController.h"
+#import "QSSetupAssistant.h"
+#import "QSTaskViewer.h"
 
 #define DEVEXPIRE 180.0f
 #define DEPEXPIRE 365.24219878f
-
-#include "QSLocalization.h"
-
-#import "QSObject_Pasteboard.h"
-#import "QSCommand.h"
-
-QSController *QSCon;
 
 @interface QSObject (QSURLHandling)
 - (void)handleURL:(NSURL *)url;
@@ -88,12 +22,14 @@ QSController *QSCon;
 - (void)registerForErrors;
 @end
 
+static QSController *defaultController = nil;
+
 @implementation QSController
-- (void)awakeFromNib { if (!QSCon) QSCon = [self retain];  }
+- (void)awakeFromNib { if (!defaultController) defaultController = [self retain];  }
 + (id)sharedInstance {
-	if (!QSCon)
-		QSCon = [[[self class] allocWithZone:[self zone]] init];
-	return QSCon;
+	if (!defaultController)
+		defaultController = [[[self class] allocWithZone:[self zone]] init];
+	return defaultController;
 }
 
 + (void)initialize {
@@ -142,7 +78,7 @@ QSController *QSCon;
 	[NSApp activateIgnoringOtherApps:YES];
 	int result = NSRunInformationalAlertPanel(@"", @"This version of Quicksilver has expired. Please download the latest version.", @"Download", @"OK", nil);
 	if (result)
-		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kDownloadUpdateURL]];
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kWebSiteURL]];
 }
 #endif
 
@@ -745,7 +681,8 @@ QSController *QSCon;
 	[nc postNotificationName:QSInterfaceChangedNotification object:self];
 }
 
-- (id <QSFSBrowserMediator>) finderProxy { return [QSReg FSBrowserMediator];  }
+/* Deprecated. It's defined in Core Plugin */
+- (id) finderProxy { return [QSReg performSelector:@selector(FSBrowserMediator)]; }
 
 @end
 
@@ -784,6 +721,7 @@ QSController *QSCon;
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+    QSGetLocalizationStatus();
 	if (DEBUG) {
 		[self registerForErrors];
 	}

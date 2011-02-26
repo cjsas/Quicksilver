@@ -63,7 +63,6 @@
 }
 
 - (NSString *)destination {
-    NSLog(@"Destination for %p at %@ is %@", self, [self url], destination);
 	return destination;
 }
 
@@ -145,8 +144,7 @@
 
 - (void)download:(QSURLDownload *)download didFailWithError:(NSError *)error {
     if(delegate && [delegate respondsToSelector:@selector(download:didFailWithError:)])
-        [delegate download:(NSURLDownload*)self didFailWithError:error];
+        [delegate download:self didFailWithError:error];
 }
-
 
 @end

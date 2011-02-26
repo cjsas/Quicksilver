@@ -272,10 +272,6 @@ id QSPrefs;
 	//return [[[modules objectAtIndex:row] objectForKey:@"type"] isEqualToString:@"Main"] ?32:16;
 }
 
-- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex {
-	return (aTableView == internalPrefsTable) ? ![self tableView:aTableView rowIsSeparator:rowIndex] : NO;
-}
-
 - (BOOL)tableView:(NSTableView *)aTableView rowIsSeparator:(NSInteger)rowIndex {
 	if (aTableView == internalPrefsTable)
 		return nil != [[modules objectAtIndex:rowIndex] objectForKey:@"separator"];
@@ -283,7 +279,11 @@ id QSPrefs;
 		return NO;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView shouldShowCellExpansionForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex {
+	return (aTableView == internalPrefsTable) ? ![self tableView:aTableView rowIsSeparator:rowIndex] : NO;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView shouldShowCellExpansionForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
 	return NO;
 }
 
